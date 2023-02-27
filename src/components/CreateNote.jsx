@@ -81,40 +81,40 @@ function CreateNote({handleAdd, sideBarActive}) {
                 </div>
 
                     
-                    <div className="input-details">
-                        <p>Description</p>
-                        <textarea
-                            id="" cols="30" rows="10" 
-                            onKeyUp = {checkDetails} 
-                            placeholder = "Type Something..." 
-                            onChange = {(e) => setDetails(e.target.value)} value = {details} 
-                            required>
-                            
-                        </textarea>
-                        <div className="category-select" onChange = {(e) => setCategory(e.target.value)} value = {category}>
-                            <div className="input-btn">
-                                <input type="radio" name="category" value = "Reminder" defaultChecked/>
-                                <p>Reminder</p> 
-                            </div>
-                            <div className="input-btn">
-                                <input type="radio" name="category" value = "Health"/> 
-                                <p>Health</p> 
-                            </div>
-                            <div className="input-btn">
-                                <input type="radio" name="category" value = "Business"/>
-                                <p>Business</p> 
-                            </div>
-                            <div className="input-btn">
-                            <input type="radio" name="category" value = "Education"/>
-                                <p>Education</p> 
-                            </div>
+                <div className="input-details">
+                    <p>Description</p>
+                    <textarea
+                        id="" cols="30" rows="10" 
+                        onKeyUp = {checkDetails} 
+                        placeholder = "Type Something..." 
+                        onChange = {(e) => setDetails(e.target.value)} value = {details} 
+                        required>
+                        
+                    </textarea>
+                    <div className="category-select" onChange = {(e) => setCategory(e.target.value)} value = {category}>
+                        <div className="input-btn">
+                            <input type="radio" name="category" value = "Reminder" defaultChecked/>
+                            <p>Reminder</p> 
+                        </div>
+                        <div className="input-btn">
+                            <input type="radio" name="category" value = "Health"/> 
+                            <p>Health</p> 
+                        </div>
+                        <div className="input-btn">
+                            <input type="radio" name="category" value = "Business"/>
+                            <p>Business</p> 
+                        </div>
+                        <div className="input-btn">
+                        <   input type="radio" name="category" value = "Education"/>
+                            <p>Education</p> 
                         </div>
                     </div>
+                </div>
 
-                    <button type = "submit" disabled = {isDisabled} className = {`input-submit ${isDisabled ? "disabled" : ""}`}>
-                        <p>Submit</p>
-                        <FaGreaterThan color = "white"/> 
-                    </button>
+                <button type = "submit" disabled = {isDisabled} className = {`input-submit ${isDisabled ? "disabled" : ""}`}>
+                    <p>Submit</p>
+                    <FaGreaterThan color = "white"/> 
+                </button>
             </form>
         
 
