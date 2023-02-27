@@ -5,7 +5,7 @@ import { useHistory } from "react-router"
 
 function CreateNote({handleAdd, sideBarActive}) {
     const [title, setTitle] = useState("");
-    const [category, setCategory] = useState("Reminders");
+    const [category, setCategory] = useState("Personal");
     const [details, setDetails] = useState("")
     const [titleError, setTitleError] = useState("")
     const [detailsError, setDetailsError] = useState("")
@@ -17,22 +17,29 @@ function CreateNote({handleAdd, sideBarActive}) {
     
 
     const checkTitle = (e) => {
-        if(e.target.value.trim().length == 0 && title.length > 0){
+        if(title.trim().length == 0 && title.length > 0){
             setTitleError("Please Put in a Valid Title")
             setIsDisabled(true)
-        }else if(title.length == 0){
-            setTitleError(true)
+            setDetailsError("Please put in a valid Description")
+        }else if(title.length == 0 || details.length == 0){
+            setTitleError("")
             setIsDisabled(true)
-        }else if(title.length > 0){
+        }else if(title.trim().length > 0 && details.trim().length > 0){
             setIsDisabled(false)
+            setTitleError("")
         }
     }
 
 
-    const checkDetails = () => {
-        if(details.trim().length == 0){
+    const checkDetails = (e) => {
+        if(details.trim().length == 0 && details.length > 0){
             setDetailsError("Please put in a valid Description")
-        }else{
+            setIsDisabled(true)
+        }else if(title.length == 0 || details.length == 0){
+            setIsDisabled(true)
+            setDetailsError("")
+        }else if(title.trim().length > 0 && details.trim().length > 0){
+            setIsDisabled(false)
             setDetailsError("")
         }
     }
@@ -60,7 +67,8 @@ function CreateNote({handleAdd, sideBarActive}) {
                 <div className="input-title">
                     <p>Title</p>
                     <input type="title" 
-                        maxLength = "30" 
+                        maxLength = "30"
+                        placeholder = "Note Title"
                         onKeyUp = {checkTitle} 
                         onChange = {(e) => (
                             setTitle(e.target.value),
@@ -91,22 +99,24 @@ function CreateNote({handleAdd, sideBarActive}) {
                         required>
                         
                     </textarea>
+                    <p className = "details-error">{detailsError}</p>
+
                     <div className="category-select" onChange = {(e) => setCategory(e.target.value)} value = {category}>
                         <div className="input-btn">
-                            <input type="radio" name="category" value = "Reminder" defaultChecked/>
-                            <p>Reminder</p> 
+                            <input type="radio" name="category" value = "Personal" defaultChecked/>
+                            <p>Personal</p> 
                         </div>
                         <div className="input-btn">
-                            <input type="radio" name="category" value = "Health"/> 
-                            <p>Health</p> 
+                            <input type="radio" name="category" value = "Work"/> 
+                            <p>Work</p> 
                         </div>
                         <div className="input-btn">
-                            <input type="radio" name="category" value = "Business"/>
-                            <p>Business</p> 
-                        </div>
-                        <div className="input-btn">
-                        <   input type="radio" name="category" value = "Education"/>
+                            <input type="radio" name="category" value = "Education"/>
                             <p>Education</p> 
+                        </div>
+                        <div className="input-btn">
+                        <   input type="radio" name="category" value = "Others"/>
+                            <p>Others</p> 
                         </div>
                     </div>
                 </div>

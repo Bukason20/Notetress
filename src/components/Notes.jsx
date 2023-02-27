@@ -28,7 +28,7 @@ class Notes extends React.Component {
                 {notes.length == 0 ? "You have no notes" : (
                     <div className="notes">
                         {notes.map((note, index) => (
-                            <Note key={index} note={note} handleDelete={handleDelete} />
+                            <Note key={index} note={note} handleDelete={handleDelete}/>
                         ))}
                     </div>
                 )}

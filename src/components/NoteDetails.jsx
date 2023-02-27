@@ -25,7 +25,7 @@ class NoteDetails extends Component {
         const { currentNote } = this.state;
 
         return (
-            <div className="note-details">
+            <div className="currentNote">
                 <Link to = "/" className="back"><FaLessThan /></Link>
                 <div className="currentNote-head">
                     <h2 className="currentNote-title">{currentNote.title}</h2>

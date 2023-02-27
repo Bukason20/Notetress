@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       notes: localStorage.getItem("notes") === null ? [] :  JSON.parse(localStorage.getItem("notes")),
       notesActive: false,
-      createActive: false
+      createActive: false,
     };
 
     this.sideBarActive = this.sideBarActive.bind(this);
@@ -68,7 +68,7 @@ class App extends Component {
           <div className="content">
             <Switch>
               <Route exact path="/">
-                <Notes notes={this.state.notes} handleDelete={this.deleteNote} />
+                <Notes notes={this.state.notes} handleDelete={this.deleteNote}/>
               </Route>
               <Route path="/create">
                 <CreateNote handleAdd={this.addNote} sideBarActive={this.sideBarActive} />

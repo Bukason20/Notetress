@@ -4,7 +4,7 @@
   overflow-x: hidden;
 }
 body{
-  background-color: #ccc;
+  background-color: rgb(240, 235, 235);
 }
 .app{
   display: flex;
@@ -59,6 +59,7 @@ body{
   justify-content: space-between;
   height: 30px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .editor{
@@ -77,16 +78,14 @@ body{
 /* --------------------------------------------------------NOTE------------------------------------------- */
 .note-container{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 300px;
-  /* padding: 30px 20px; */
+  width: 400px;
   height: fit-content;
   background-color: white;
   position: relative;
   z-index: 1;
 }
 .note-link{
-  padding: 30px 20px;
-  /* background-color: blue; */
+  padding: 35px 20px;
   width: 100%;
   display: block;
   text-decoration: none;
@@ -95,7 +94,7 @@ body{
 }
 .first-part{
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
   align-items: center;
 }
 .note-heading{
@@ -108,19 +107,66 @@ body{
   padding: 10px 13px;
   color: white;
   border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.note-avatar.personal {
+  background-color: hsla(0, 100%, 67%, 0.2);
+  color: hsla(0, 100%, 67%);
+}
+.note-avatar.work{
+  background-color: hsla(39, 100%, 56%, 0.2);
+  color: hsl(39, 100%, 56%);
+}
+.note-avatar.education{
+  background-color: hsl(166, 100%, 37%, 0.2);
+  color: hsl(166, 100%, 37%);
+}
+.note-avatar.others{
+  background-color: hsla(234, 85%, 45%, 0.2);
+  color: hsl(234, 85%, 45%);
+}
+.note-title{
+  font-size: 1rem;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+.note-category{
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+.note-category.personal{
+  color: hsla(0, 100%, 67%);
+}
+.note-personal.work{
+  color: hsl(39, 100%, 56%);
+}
+.note-personal.education{
+  color: hsl(166, 100%, 37%);
+}
+.note-personal.others{
+  color: hsl(234, 85%, 45%);
 }
 .note-details{
   margin-top: 1rem;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  max-width: 300px;
 }
-.delete{
+.note-btns{
   position: absolute;
   top: 10px;
   right: 10px;
   z-index: 200;
+  display: flex;
+  gap: 0.5rem;
+}
+.note-btns button{
   border: none;
   outline: none;
   background-color: transparent;
-  /* width: ; */
 }
 
 /* -----------------------------------CREATE----------------------------------------------- */
@@ -188,10 +234,8 @@ input {
   margin: 10px 0;
 }
 .title-count-container{
-  /* color: red; */
   margin: auto;
   display: flex;
-  /* background-color: orange; */
   width: 95%;
   justify-content: space-between;
   align-items: center;
@@ -207,8 +251,12 @@ input {
 .title-count.about{
   color: red;
 }
+.details-error{
+  font-size: 0.9rem;
+  color: red;
+}
 .input-submit{
-  background-color: lightgreen;
+  background-color: rgb(93, 253, 93);
   border: 1px solid transparent;
   outline: none;
   padding: 1rem 1.5rem;
@@ -217,6 +265,8 @@ input {
   gap: 0.5rem;
   color: white;
   font-size: 1.2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 1rem;
 }
 .input-submit.disabled{
   background-color: #cccccc;
