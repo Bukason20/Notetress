@@ -1,6 +1,7 @@
 import React from 'react';
 import Note from "./Note"
 import Header from "./Header"
+import SearchBar from './SearchBar';
 
 class Notes extends React.Component {
     constructor(props) {
@@ -12,26 +13,55 @@ class Notes extends React.Component {
     }
 
     render() {
-        const {notes, handleDelete} = this.props;
+        const {notes, handleDelete, filterText, handleFilter, searchResults} = this.props;
         const {today, months} = this.state;
+
+        
+
+        if(filterText.length >= 1 && searchResults.length === 0){
+            return (
+                <div>
+                    <Header>
+                    <p>{`Today is the ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`}</p>
+                    <SearchBar filterText = {filterText} handleFilter = {handleFilter}/>
+                </Header>
+                <p className = "none">No match!</p>
+                </div>
+                
+            )
+        }else if(notes.length < 1 && filterText.length < 1){
+            return (
+                <div>
+                    <Header>
+                    <p>{`Today is the ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`}</p>
+                    <SearchBar filterText = {filterText} handleFilter = {handleFilter}/>
+                </Header>
+                <p className = "none">No Notes!</p>
+                </div>
+                
+            ) 
+        }
 
 
         return (
             <div>
                 <Header>
-                    <p>{`Today is the ${today.getDate()}th ${months[today.getMonth()]}`}</p>
-                    {/* <input type="search" placeholder="Search" /> */}
-                    <p>Notes({notes.length})</p>
+                    <p>{`Today is the ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`}</p>
+                    <SearchBar filterText = {filterText} handleFilter = {handleFilter}/>
                 </Header>
-                {/* <h1>My Notes</h1> */}
-
-                {notes.length == 0 ? "You have no notes" : (
-                    <div className="notes">
-                        {notes.map((note, index) => (
+                
+                <div className="notes">
+                    {filterText.length < 1 ? notes.map((note, index) => {
+                        return (
                             <Note key={index} note={note} handleDelete={handleDelete}/>
-                        ))}
-                    </div>
-                )}
+                        )
+                    }) : searchResults.map((note, index) => {
+                        return (
+                            <Note key={index} note={note} handleDelete={handleDelete}/>
+                        )
+                    })} 
+                </div>
+               
 
             </div>
         );

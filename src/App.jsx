@@ -13,12 +13,15 @@ class App extends Component {
       notes: localStorage.getItem("notes") === null ? [] :  JSON.parse(localStorage.getItem("notes")),
       notesActive: false,
       createActive: false,
+      filterText: "",
+      searchResults: []
     };
 
     this.sideBarActive = this.sideBarActive.bind(this);
     this.activeNote = this.activeNote.bind(this);
     this.addNote = this.addNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
+    this.filterEvent = this.filterEvent.bind(this)
   }
 
   addNote = (newNote) => {
@@ -44,10 +47,25 @@ class App extends Component {
   }
 
   activeNote = (e) => {
-    if (e.target.innerHTML === "My Notes") {
+    const notes = [...this.state.notes];
+    if (e.target.innerHTML === `My Notes(${notes.length})`) {
       this.setState({createActive: false, notesActive: true});
     } else if (e.target.innerHTML === "Create Note") {
       this.setState({notesActive: false, createActive: true});
+    }
+  }
+
+  filterEvent = (searchTerm) => {
+    this.setState({filterText : searchTerm})
+    const notes = [...this.state.notes];
+    if(searchTerm !== ""){
+      const newNote = notes.filter((note) => {
+        return Object.values(note).join(" ").toLowerCase().includes(searchTerm.toLowerCase());
+      })
+
+      this.setState({searchResults : newNote})
+    }else {
+      this.setState({searchResults : notes})
     }
   }
 
@@ -64,11 +82,12 @@ class App extends Component {
             notesActive={this.state.notesActive}
             createActive={this.state.createActive}
             activeNote={this.activeNote}
+            notes = {this.state.notes}
           />
           <div className="content">
             <Switch>
               <Route exact path="/">
-                <Notes notes={this.state.notes} handleDelete={this.deleteNote}/>
+                <Notes notes={this.state.notes} handleDelete={this.deleteNote} filterText = {this.state.filterText} handleFilter = {this.filterEvent} searchResults = {this.state.searchResults}/>
               </Route>
               <Route path="/create">
                 <CreateNote handleAdd={this.addNote} sideBarActive={this.sideBarActive} />

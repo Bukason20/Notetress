@@ -29,7 +29,7 @@ class NoteDetails extends Component {
                 <Link to = "/" className="back"><FaLessThan /></Link>
                 <div className="currentNote-head">
                     <h2 className="currentNote-title">{currentNote.title}</h2>
-                    <p>{currentNote.category}</p>
+                    <p className = {`current-category ${currentNote.category == "Personal" ? "personal" : ""} ${currentNote.category == "Work" ? "work" : ""} ${currentNote.category == "Education" ? "education" : ""} ${currentNote.category == "Others" ? "others" : ""}`}>{currentNote.category}</p>
                 </div>
                 <p className="currentNote-details">{currentNote.details}</p>
             </div>
