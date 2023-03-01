@@ -20,7 +20,6 @@ function CreateNote({handleAdd, sideBarActive}) {
         if(title.trim().length == 0 && title.length > 0){
             setTitleError("Please Put in a Valid Title")
             setIsDisabled(true)
-            setDetailsError("Please put in a valid Description")
         }else if(title.length == 0 || details.length == 0){
             setTitleError("")
             setIsDisabled(true)
